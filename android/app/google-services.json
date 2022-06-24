@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "156320634306",
+    "project_id": "tee-chat-582b5",
+    "storage_bucket": "tee-chat-582b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156320634306:android:f0abdd0babe49903d1b25b",
+        "android_client_info": {
+          "package_name": "com.example.tee_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156320634306-hkcmkcubk5ugngle5j93mhe1nanjerr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAohJDffqtWRgRg6wsRbQ_GzrASjLTukkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156320634306-hkcmkcubk5ugngle5j93mhe1nanjerr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
