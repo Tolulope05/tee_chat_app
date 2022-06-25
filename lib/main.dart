@@ -18,7 +18,31 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tee Chat',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        backgroundColor: Colors.pink,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink)
+            .copyWith(secondary: Colors.yellow),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+          ),
+        ),
       ),
       home: const AuthScreen(),
       debugShowCheckedModeBanner: false,
