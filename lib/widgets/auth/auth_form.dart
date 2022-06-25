@@ -9,6 +9,9 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
+
+  bool _isLogin = true;
+
   String? _userEmail = '';
   String? _userName = '';
   String? _userPassword = '';
@@ -39,6 +42,7 @@ class _AuthFormState extends State<AuthForm> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
+                    key: const ValueKey('email'),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value!.isEmpty || !value.contains('@')) {
@@ -53,19 +57,22 @@ class _AuthFormState extends State<AuthForm> {
                       labelText: 'Email Address',
                     ),
                   ),
+                  if (!_isLogin)
+                    TextFormField(
+                      key: const ValueKey('username'),
+                      validator: ((value) {
+                        if (value!.isEmpty || value.length < 7) {
+                          return 'Please enter at least 7 characters.';
+                        }
+                        return null;
+                      }),
+                      onSaved: (value) {
+                        _userName = value;
+                      },
+                      decoration: const InputDecoration(labelText: 'Username'),
+                    ),
                   TextFormField(
-                    validator: ((value) {
-                      if (value!.isEmpty || value.length < 7) {
-                        return 'Please enter at least 7 characters.';
-                      }
-                      return null;
-                    }),
-                    onSaved: (value) {
-                      _userName = value;
-                    },
-                    decoration: const InputDecoration(labelText: 'Username'),
-                  ),
-                  TextFormField(
+                    key: const ValueKey('password'),
                     validator: ((value) {
                       if (value!.isEmpty || value.length < 7) {
                         return 'Password must be at least 7 characters.';
@@ -83,11 +90,19 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   ElevatedButton(
                     onPressed: _trySubmit,
-                    child: const Text('Login'),
+                    child: Text(_isLogin ? 'Login' : 'Signup'),
                   ),
                   TextButton(
-                    onPressed: () {},
-                    child: const Text('Create new account'),
+                    onPressed: () {
+                      setState(() {
+                        _isLogin = !_isLogin;
+                      });
+                    },
+                    child: Text(
+                      _isLogin
+                          ? 'Create new account'
+                          : 'I already have an account.',
+                    ),
                   )
                 ],
               ),
