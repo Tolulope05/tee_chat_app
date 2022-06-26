@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../widgets/auth/auth_form.dart';
 
@@ -13,10 +13,14 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
+  bool _isLoading = false;
   void _submitAuthForm(String email, String password, String username,
       bool isLogin, BuildContext ctx) async {
     UserCredential authResult;
     try {
+      setState(() {
+        _isLoading = true;
+      });
       if (isLogin) {
         authResult = await _auth.signInWithEmailAndPassword(
           email: email,
@@ -27,6 +31,13 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(authResult.user!.uid)
+            .set({
+          'username': username,
+          'email': email,
+        });
       }
     } on FirebaseAuthException catch (err) {
       String message = 'An Error occured, Please check your credentials';
@@ -40,6 +51,9 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
         backgroundColor: Theme.of(context).errorColor,
       ));
+      setState(() {
+        _isLoading = false;
+      });
     } catch (err) {
       var message = 'An Error occured, Please check your credentials';
       print(err);
@@ -50,6 +64,9 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
         backgroundColor: Theme.of(context).errorColor,
       ));
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -57,7 +74,10 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
-      body: AuthForm(_submitAuthForm),
+      body: AuthForm(
+        _submitAuthForm,
+        _isLoading,
+      ),
     );
   }
 }
