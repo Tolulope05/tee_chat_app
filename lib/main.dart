@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tee_chat_app/screens/chat_screen.dart';
 
 import './screens/auth_screen.dart';
 
@@ -44,7 +46,17 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const AuthScreen(),
+      home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (ctx, AsyncSnapshot<User?> usersnapshot) {
+            if (usersnapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (usersnapshot.hasData) {
+              return const ChatScreen();
+            }
+            return const AuthScreen();
+          }),
       debugShowCheckedModeBanner: false,
     );
   }
