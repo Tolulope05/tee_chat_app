@@ -28,20 +28,22 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
       }
-    } on PlatformException catch (err) {
+    } on FirebaseAuthException catch (err) {
       String message = 'An Error occured, Please check your credentials';
       if (err.message != null) {
         message = err.message!;
       }
       //Show toast
       ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-          content: Text(
-        message,
-        style: TextStyle(backgroundColor: Theme.of(context).errorColor),
-      )));
+        content: Text(
+          message,
+        ),
+        backgroundColor: Theme.of(context).errorColor,
+      ));
     } catch (err) {
-      var message = 'The Email address is badly formatted';
-      // print(err);
+      var message = 'An Error occured, Please check your credentials';
+      print(err);
+      message = err.toString();
       ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
         content: Text(
           message,
