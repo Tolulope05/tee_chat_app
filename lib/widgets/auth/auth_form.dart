@@ -6,6 +6,7 @@ class AuthForm extends StatefulWidget {
     String password,
     String username,
     bool isLogin,
+    BuildContext ctx,
   ) submitFn;
 
   const AuthForm(this.submitFn, {Key? key}) : super(key: key);
@@ -32,10 +33,11 @@ class _AuthFormState extends State<AuthForm> {
       // print(_userPassword);
       //Use those values to send our auth request to firebase...
       widget.submitFn(
-        _userEmail!,
-        _userPassword!,
-        _userName!,
+        _userEmail!.trim(),
+        _userPassword!.trim(),
+        _userName!.trim(),
         _isLogin,
+        context,
       );
     }
   }
