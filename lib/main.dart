@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         backgroundColor: Colors.teal,
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
-            .copyWith(secondary: Colors.blueGrey[50]),
+            .copyWith(secondary: const Color.fromARGB(255, 6, 79, 43)),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             shape: const RoundedRectangleBorder(
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         textTheme: const TextTheme(
-          headline1: TextStyle(color: Colors.black87),
+          headline1: TextStyle(color: Colors.white),
         ),
       ),
       home: StreamBuilder(
