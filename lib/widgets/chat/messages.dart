@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import './message_bubble.dart';
+
 class Messages extends StatelessWidget {
   const Messages({Key? key}) : super(key: key);
 
@@ -28,7 +30,7 @@ class Messages extends StatelessWidget {
             // final chat = chatDoc.data();
             return Container(
               padding: const EdgeInsets.all(8),
-              child: Text(chatDoc['text']),
+              child: Messagebubble(chatDoc['text']),
             );
           },
         );

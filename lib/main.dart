@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tee Chat',
       theme: ThemeData(
-        backgroundColor: Colors.pink,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink)
-            .copyWith(secondary: Colors.yellow),
+        backgroundColor: Colors.teal,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
+            .copyWith(secondary: Colors.blueGrey[50]),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             shape: const RoundedRectangleBorder(
@@ -44,6 +44,9 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
           ),
+        ),
+        textTheme: const TextTheme(
+          headline1: TextStyle(color: Colors.black87),
         ),
       ),
       home: StreamBuilder(
