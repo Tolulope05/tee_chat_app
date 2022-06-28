@@ -40,6 +40,7 @@ class Messages extends StatelessWidget {
                 return Container(
                   padding: const EdgeInsets.all(8),
                   child: Messagebubble(
+                    chatDoc['username'],
                     chatDoc['text'],
                     chatDoc['userId'] == streamSnapshot.data!.uid,
                     key: ValueKey(chatDoc.id),
