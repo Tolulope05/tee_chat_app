@@ -41,6 +41,7 @@ class Messages extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: Messagebubble(
                     chatDoc['username'],
+                    chatDoc['userImage'],
                     chatDoc['text'],
                     chatDoc['userId'] == streamSnapshot.data!.uid,
                     key: ValueKey(chatDoc.id),
