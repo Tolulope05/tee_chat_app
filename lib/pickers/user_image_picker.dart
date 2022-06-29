@@ -17,9 +17,22 @@ class _UserImagePickerState extends State<UserImagePicker> {
   File? _pickedImage;
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> _pickImage() async {
+  Future<void> _pickImageCam() async {
     final XFile? image = await _picker.pickImage(
       source: ImageSource.camera,
+      imageQuality: 50,
+      maxWidth: 150,
+    );
+    // print(image!.path.toString());
+    setState(() {
+      _pickedImage = File(image!.path);
+    });
+    widget.imagePickedfn(File(image!.path));
+  }
+
+  Future<void> _pickImage() async {
+    final XFile? image = await _picker.pickImage(
+      source: ImageSource.gallery,
       imageQuality: 50,
       maxWidth: 150,
     );
@@ -40,11 +53,37 @@ class _UserImagePickerState extends State<UserImagePicker> {
           radius: 40,
           backgroundColor: Theme.of(context).colorScheme.primary,
         ),
-        TextButton.icon(
-          onPressed: _pickImage,
-          icon: const Icon(Icons.image),
-          label: const Text('Add Image'),
-        ),
+        TextButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      elevation: 16,
+                      child: SizedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton.icon(
+                              onPressed: _pickImageCam,
+                              icon: const Icon(Icons.camera),
+                              label: const Text('Camera'),
+                            ),
+                            TextButton.icon(
+                              onPressed: _pickImage,
+                              icon: const Icon(Icons.image),
+                              label: const Text('Gallery'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+            },
+            child: const Text('Add Image'))
       ],
     );
   }
