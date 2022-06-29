@@ -23,6 +23,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
       imageQuality: 50,
       maxWidth: 150,
     );
+    Navigator.of(context).pop();
     // print(image!.path.toString());
     setState(() {
       _pickedImage = File(image!.path);
@@ -36,6 +37,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
       imageQuality: 50,
       maxWidth: 150,
     );
+    Navigator.of(context).pop();
     // print(image!.path.toString());
     setState(() {
       _pickedImage = File(image!.path);
