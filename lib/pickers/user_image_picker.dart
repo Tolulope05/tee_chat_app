@@ -23,8 +23,8 @@ class _UserImagePickerState extends State<UserImagePicker> {
       imageQuality: 50,
       maxWidth: 150,
     );
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
-    // print(image!.path.toString());
     setState(() {
       _pickedImage = File(image!.path);
     });
@@ -37,8 +37,8 @@ class _UserImagePickerState extends State<UserImagePicker> {
       imageQuality: 50,
       maxWidth: 150,
     );
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
-    // print(image!.path.toString());
     setState(() {
       _pickedImage = File(image!.path);
     });
