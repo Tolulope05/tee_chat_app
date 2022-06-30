@@ -96,6 +96,7 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin)
                     TextFormField(
                       key: const ValueKey('username'),
+                      textCapitalization: TextCapitalization.words,
                       validator: ((value) {
                         if (value!.isEmpty || value.length < 7) {
                           return 'Please enter at least 7 characters.';

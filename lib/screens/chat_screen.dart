@@ -86,6 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Tee Chat'), actions: [
         DropdownButton(
+          underline: Container(),
           items: [
             DropdownMenuItem(
               value: 'logout',
