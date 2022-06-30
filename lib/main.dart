@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           builder: (ctx, AsyncSnapshot<User?> usersnapshot) {
             if (usersnapshot.connectionState == ConnectionState.waiting) {
               // return const Center(child: CircularProgressIndicator());
-              return SplashScreeen();
+              return const SplashScreeen();
             }
             if (usersnapshot.hasData) {
               return const ChatScreen();
